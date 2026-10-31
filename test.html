@@ -7,10 +7,19 @@
 <body>
   <h2>Document links</h2>
   <ul>
-    <li><a href="docs/sample.pdf" target="_blank">PDF document</a></li>
-    <li><a href="docs/sample.docx" target="_blank">Word document</a></li>
-    <!-- CASE 2: add this later, as the 3rd link -->
-    <!-- <li><a href="docs/third.pdf" target="_blank">Third document</a></li> -->
+    <li><a href="docs/sample.pdf" class="doc" target="_blank">PDF document</a></li>
+    <li><a href="docs/sample.docx" class="doc" target="_blank">Word document</a></li>
+    <li><a href="docs/third.pdf" class="doc" target="_blank">Third document</a></li>
   </ul>
+
+  <script>
+    // On every click, add a fresh timestamp so the browser never reuses a cached copy
+    document.querySelectorAll('a.doc').forEach(function (link) {
+      var original = link.getAttribute('href');
+      link.addEventListener('click', function () {
+        link.href = original + '?v=' + Date.now();
+      });
+    });
+  </script>
 </body>
 </html>
